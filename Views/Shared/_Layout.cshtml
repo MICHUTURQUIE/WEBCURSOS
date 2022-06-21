@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Web Cursos"] - WebCursos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="~/css/site.css" />
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+  <ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" asp-controller="Home" asp-action="Index" >Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" asp-controller="Home" asp-action="AgregarCurso" >Crear nuevo curso</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Especialidades</a>
+    <div class="dropdown-menu">
+    @{
+
+      List<TP11.Models.Especialidad> Lista = TP11.Models.BD.ListaEspecialidades();
+      foreach (TP11.Models.Especialidad esp in Lista )
+      {
+          <center>
+          <a class="nav-link" href='@Url.Action("MostrarCursosXEspecialidad","Home", new {IdEspecialidad=esp.IdEspecialidad})'>@esp.Nombre</a>
+          </center>
+          <br>
+      }
+    }
+    </div>
+  </li>
+</ul>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2021 - WebCursos - Michelle Turquie <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

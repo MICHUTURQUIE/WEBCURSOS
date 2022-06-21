@@ -1,0 +1,63 @@
+@{
+    ViewData["Agregar Curso"] = "Agregar Curso";
+}
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="main-block">
+  <div class="left-part">
+    <i class="fas fa-graduation-cap"></i>
+      <h1> Agrega un nuevo curso </h1>
+      <div class="T1">
+      </div>
+        
+        <div class="btn-group">
+          <a class="btn-item" asp-action="Index"> VER CURSOS YA EXISTENTES </a>
+        </div>
+      </div>
+      <form method="POST" action='@Url.Action("GuardarCurso", "Home")'>
+        <div class="title">
+          <i class="fas fa-pencil-alt"></i> 
+          <h2>Agregarlo Aca</h2>
+        </div>
+        <div class="info">
+          @{  
+             
+          <input class="fname" type="text" name="Nombre" placeholder="Nombre">
+          <input type="text" name="Descripcion" placeholder="Descripcion">     
+          <input type="text" name="Imagen" placeholder="URL Foto del curso">    
+          }
+
+            <select>  
+
+        
+   @{
+
+      List<TP11.Models.Especialidad> Lista = TP11.Models.BD.ListaEspecialidades();
+      foreach (TP11.Models.Especialidad esp in Lista )
+      {
+          <center>
+          <option value="course-type" selected>Especialidad <href='@Url.Action("MostrarCursosXEspecialidad","Home", new {IdEspecialidad=esp.IdEspecialidad})'>@esp.Nombre </option> 
+          </center>
+          <br>
+      } 
+    }
+
+
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkbox"><span>I agree to the <a href="#">Privacy Poalicy for el Trabajo de Michelle.</a></span>
+        </div>
+        <button type="submit" href="/">Crear curso</button>
+      </form>
+    </div>
+
+
+
+
+

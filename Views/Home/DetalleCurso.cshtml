@@ -1,0 +1,28 @@
+@{
+    ViewData["Detalle Curso"] = "Detalle Curso";
+}
+
+<br>
+
+@{
+    
+    {
+
+        <div class="card mb-3">
+        <img src="@ViewBag.Curso.Imagen" class="card-img-top"  alt="..">
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Curso.Nombre</h5>
+            <p class="card-text">@ViewBag.Curso.Descripcion</p>
+        </div>
+        </div>
+
+    <a   class="btn btn-primary btn-lg btn-block" href='@Url.Action("Calificar","Home", new {Like="True", IdCurso=@ViewBag.Curso.IdCurso})'>Me Gusta</a>
+    <a class="btn btn-secondary btn-lg btn-block" href='@Url.Action("Calificar","Home", new {Like="False", IdCurso=@ViewBag.Curso.IdCurso})'>No me Gusta</a>
+
+    }
+}
+
+<br>
+
+
+

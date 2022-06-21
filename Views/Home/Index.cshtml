@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido</h1>    
+</div>
+
+<br>
+
+@foreach (var Curso in ViewBag.Cursos)
+{
+  <div class="card text-center">
+  <div class="card-header">
+
+    @foreach (var Especialidades in ViewBag.Especialidad){
+
+        @if(Curso.IdEspecialidad==Especialidades.IdEspecialidad){@Especialidades.Nombre;}
+
+    }
+    
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">@Curso.Nombre</h5>
+    <br>
+    <a  class="btn btn-primary" href='@Url.Action("VerCurso","Home", new {IdCurso=@Curso.IdCurso})' >  Ver Curso </a>
+  </div>
+</div>
+<br>
+}
+
+
+
